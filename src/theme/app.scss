@@ -109,13 +109,20 @@ body {
         color: rgba(170, 170, 170, 1);
         font-size: 14px;
         font-family: PingFangSC-Regular;
+        cursor: pointer;
       }
     }
     .right-panel {
+      overflow: hidden;
     }
     .right-panel img {
       width: calc(960px - 370px);
       height: 100%;
+      transition: 0.8s ease-in-out;
+    }
+    .right-panel img:hover {
+      transform: scale(1.1);
+      zoom: 1;
     }
   }
   .login-footer {

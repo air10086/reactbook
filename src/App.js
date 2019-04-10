@@ -16,7 +16,7 @@ class App extends Component {
       <div className="App">
         <Layout>
           <Switch>
-            <UserLayout path="/" component={UserComponent} />
+            <UserLayout path="/login" component={UserComponent} />
           </Switch>
         </Layout>
       </div>
