@@ -50,7 +50,7 @@ export default function ask(name, opt = {}) {
   let instance = axios.create({
     baseURL,
     // `withCredentials` 表示跨域请求时是否需要使用凭证
-    withCredentials: true
+    withCredentials: false
   });
 
   // 响应中间处理层
