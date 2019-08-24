@@ -1,7 +1,7 @@
 const User = {
   //登录
   getUsers: {
-    method: 'GET',
+    method: 'POST',
     url: '/login',
     right: undefined
   }

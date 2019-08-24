@@ -15,12 +15,7 @@ class Login extends Component {
     };
   }
 
-  async componentDidMount() {
-    let aaa = await ask('getUsers');
-    if (aaa) {
-      console.log(aaa);
-    }
-  }
+  async componentDidMount() {}
 
   //到注册面板
   toRegister = () => {
@@ -56,6 +51,63 @@ class Login extends Component {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (err) return;
+      let params = {
+        email: values.loginEmail,
+        password: values.password,
+        type: 3
+      };
+      let res = await ask('getUsers', { data: params });
+      if (res.code === 200) {
+        message.success(res.msg);
+      } else {
+        message.error(res.msg);
+      }
+    });
+  };
+
+  // 注册 type为2
+  registe = e => {
+    e.preventDefault();
+    this.props.form.validateFields(async (err, value) => {
+      if (err) return;
+      let params = {
+        username: value.username,
+        email: value.email,
+        password: value.certainPassword,
+        type: 2
+      };
+
+      let res = await ask('getUsers', { data: params });
+
+      if (res.code === 200) {
+        this.cancelReset();
+        message.success(res.msg);
+      } else {
+        message.error(res.msg);
+      }
+    });
+  };
+
+  // 重置 type为 1
+  reUpdate = e => {
+    e.preventDefault();
+    this.props.form.validateFields(async (err, value) => {
+      if (err) return;
+      let params = {
+        email: value.nextEmail,
+        password: value.certainPassword1,
+        type: 1
+      };
+
+      let res = await ask('getUsers', { data: params });
+
+      if (res.code === 200) {
+        this.cancelReset();
+        message.success(res.msg);
+      } else {
+        console.log(res);
+        message.error(res.msg);
+      }
     });
   };
 
@@ -101,12 +153,12 @@ class Login extends Component {
                 })(<Input type="password" placeholder="输入密码" />)}
               </Form.Item>
               <Form.Item className={'re-border-bold'}>
-                {getFieldDecorator('certainPassword', {
+                {getFieldDecorator('certainPassword1', {
                   rules: [
                     { required: true, message: '密码必须填写' },
                     {
                       validator: (rule, value, callback) =>
-                        this.spaceRemove('certainPassword', value, callback)
+                        this.spaceRemove('certainPassword1', value, callback)
                     },
                     { validator: this.compareToPassword }
                   ]
@@ -115,7 +167,7 @@ class Login extends Component {
             </Form>
           </div>,
           <div key="3" className="login-footer">
-            <Button type={'primary'} onClick={this.loginButton}>
+            <Button type={'primary'} onClick={this.reUpdate}>
               重置
             </Button>
             <div className="cancel-reset-pwd" onClick={this.cancelReset}>
@@ -179,7 +231,7 @@ class Login extends Component {
             </Form>
           </div>,
           <div key="3" className="login-footer">
-            <Button type={'primary'} onClick={this.loginButton}>
+            <Button type={'primary'} onClick={this.registe}>
               注册
             </Button>
             <div className={'re-login'}>
