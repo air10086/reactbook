@@ -6,7 +6,7 @@ const NotFoundLayout = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={matchProps => (
-        <div className="user-layout">
+        <div className="notfound-layout">
           <Component {...matchProps} />
         </div>
       )}

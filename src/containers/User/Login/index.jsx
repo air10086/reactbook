@@ -58,6 +58,7 @@ class Login extends Component {
       };
       let res = await ask('getUsers', { data: params });
       if (res.code === 200) {
+        this.props.history.push('/home');
         message.success(res.msg);
       } else {
         message.error(res.msg);

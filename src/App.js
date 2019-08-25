@@ -6,12 +6,18 @@ import './theme/app.scss';
 
 import UserLayout from './layouts/UserLayout';
 import NotFoundLayout from './layouts//NotFoundLayout';
+import HomeLayout from './layouts/HomeLayout';
 
 const UserComponent = asyncComponent({
   resolve: () => import('./containers/User/Login')
 });
+
 const NotFoundComponent = asyncComponent({
   resolve: () => import('./containers/NotFound')
+});
+
+const HomeComponent = asyncComponent({
+  resolve: () => import('./containers/Home')
 });
 
 class App extends Component {
@@ -22,7 +28,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="login" />} />
             <UserLayout path="/login" component={UserComponent} />
-            <NotFoundLayout path="*" component={NotFoundComponent} />
+            <HomeLayout path="/home" component={HomeComponent} />
+            <NotFoundLayout component={NotFoundComponent} />
           </Switch>
         </Layout>
       </div>

@@ -1,0 +1,30 @@
+body {
+  background-image: url('../../images/404.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  .container {
+    background-color: #FFFFFF !important;
+
+    .row {
+      position: relative;
+
+      .home-btn {
+        position: absolute;
+        left: 52%;
+        transform: translate(-50%);
+      }
+
+      .back-btn {
+        position: absolute;
+        right: 50%;
+        transform: translate(-50%);
+      }
+
+
+
+    }
+
+  }
+}
