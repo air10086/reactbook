@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { asyncComponent } from 'react-async-component';
 import { Switch, Redirect, Route } from 'react-router';
+
 import { Layout } from 'antd';
 import './theme/app.scss';
 

@@ -1,13 +1,20 @@
-import { configure } from 'mobx';
-import UserStore from './user';
+import {
+  configure
+} from 'mobx';
+import userStore from './userStore';
 
 // 只允许 内部改变 state
-configure({ enforceActions: true });
+configure({
+  enforceActions: true
+});
 
-class Store {
+class Stores {
   constructor() {
-    this.userStore = new UserStore(this); // 用户
+    this.userStore = new userStore(this); // 用户
   }
 }
 
-export default Store;
+// export default Stores;
+export {
+  userStore
+}

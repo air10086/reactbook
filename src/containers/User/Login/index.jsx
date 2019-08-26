@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Input, message, Form } from 'antd';
-// import { observer, inject } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import './index.scss';
+import Footer from '../../../component/Footer/footer';
 import ask from '../../../lib/ask';
 
+@inject('userStore')
+@observer
 @withRouter
 @Form.create()
 class Login extends Component {
@@ -46,9 +49,12 @@ class Login extends Component {
       panel: 1
     });
   };
+
   //登录
   loginButton = e => {
     e.preventDefault();
+    const { checkIfLogin } = this.props.userStore;
+
     this.props.form.validateFields(async (err, values) => {
       if (err) return;
       let params = {
@@ -58,6 +64,7 @@ class Login extends Component {
       };
       let res = await ask('getUsers', { data: params });
       if (res.code === 200) {
+        checkIfLogin();
         this.props.history.push('/home');
         message.success(res.msg);
       } else {
@@ -120,6 +127,7 @@ class Login extends Component {
     callback();
   }
 
+  //切换面板
   switchPanel = () => {
     const { getFieldDecorator } = this.props.form;
     switch (this.state.panel) {
@@ -303,13 +311,7 @@ class Login extends Component {
             <img src={require('../../../images/12.png')} alt="" />
           </div>
         </content>
-        <footer className="login-footer">
-          Copyright © 2019毕业设计 github:&nbsp;
-          <a href="https://github.com/air10086/reactbook" target="blank">
-            air10086
-          </a>
-          &nbsp;欢迎star
-        </footer>
+        <Footer />
       </div>
     );
   }

@@ -1,0 +1,18 @@
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.user-avatar {
+  height: 64px;
+  width: 80px;
+  float: right;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}

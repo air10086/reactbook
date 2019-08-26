@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'mobx-react';
+import * as stores from './store';
 
 const wrap = (
-  <BrowserRouter basename="/">
-    <App />
-  </BrowserRouter>
+  <Provider {...stores}>
+    <BrowserRouter basename="/">
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 ReactDOM.render(wrap, document.getElementById('root'));

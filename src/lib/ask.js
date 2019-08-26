@@ -1,6 +1,6 @@
 import api from '../config';
 import axios from 'axios';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
 const baseURL = 'http://localhost:3000';
 
@@ -18,9 +18,9 @@ export default function ask(name, opt = {}) {
   params = params || {};
   data = data || {};
   // params.token = Cookies.get('token');
-  // params.userId = Cookies.get('userId');
+  params.userId = Cookies.get('userId');
   // data.token = Cookies.get('token');
-  // data.userId = Cookies.get('userId');
+  data.userId = Cookies.get('userId');
 
   params = Object.assign({}, {
       // 请求令牌
@@ -54,7 +54,7 @@ export default function ask(name, opt = {}) {
   let instance = axios.create({
     baseURL,
     // `withCredentials` 表示跨域请求时是否需要使用凭证
-    withCredentials: false
+    withCredentials: true
   });
 
   // 响应中间处理层
